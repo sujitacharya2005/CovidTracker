@@ -17,6 +17,8 @@ interface CovidApiService {
     fun getStatus(@Path("country") country: String) : Call<List<CovidSatus>>
 
     @GET("/total/country/{country}/status/confirmed")
-    fun getStatusDateWise(@Path("country") country: String) : Call<List<CovidSatusDateWise>>
+    fun getStatusDateWise(@Path("country") country: String,
+                          @Query("from") fromDate: String,
+                          @Query("to") to: String) : Call<List<CovidSatusDateWise>>
 
 }

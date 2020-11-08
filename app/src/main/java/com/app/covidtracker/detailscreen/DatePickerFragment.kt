@@ -7,8 +7,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.DatePicker
 import androidx.fragment.app.DialogFragment
-import kotlinx.android.synthetic.main.fragment_date_wise.*
 import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -30,8 +30,7 @@ class DatePickerFragment : DialogFragment() , DatePickerDialog.OnDateSetListener
         c.set(Calendar.YEAR, year)
         c.set(Calendar.MONTH, month)
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-        val currentDateString =
-            DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime())
+        val currentDateString = "${year}-${month}-${dayOfMonth}"
 
         targetFragment!!.onActivityResult(
             targetRequestCode,

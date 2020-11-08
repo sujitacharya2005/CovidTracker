@@ -22,7 +22,9 @@ import kotlinx.android.synthetic.main.fragment_date_wise.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
 
+private const val TAG = "DateWiseFragment"
 class DateWiseFragment : Fragment() {
     var selectedDate: String? = null
     val REQUEST_CODE = 100
@@ -44,7 +46,7 @@ class DateWiseFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_date_wise, container, false)
-        getStatusDetailsApi()
+
         button = view.button
         view.button.setOnClickListener {
             val datePicker = DatePickerFragment();
@@ -70,15 +72,22 @@ class DateWiseFragment : Fragment() {
 
             button.text = selectedDate
 
+
+
+            val startDate = selectedDate+"T00:00:00Z"
+            val endDate = selectedDate+"T23:59:59Z"
+
+            Log.d(TAG, "onActivityResult: ${startDate} ${endDate}")
+            getStatusDetailsApi(startDate, endDate)
         }
     }
 
-    private fun getStatusDetailsApi() {
+    private fun getStatusDetailsApi(startDate: String, endDate:String) {
         slug?.let {
-            CovidApiClient.create().getStatusDateWise(it)
+            CovidApiClient.create().getStatusDateWise(it, startDate, endDate)
                 .enqueue(object : Callback<List<CovidSatusDateWise>> {
                     override fun onFailure(call: Call<List<CovidSatusDateWise>>, t: Throwable) {
-                        Log.d("retrolog", "error: " + t.message)
+                        Log.d(TAG, "error: " + t.message)
                     }
 
                     override fun onResponse(
@@ -88,7 +97,7 @@ class DateWiseFragment : Fragment() {
                         if (response.body()!!.size > 0) {
 
                             Log.d(
-                                "retrolog", "onResponse: "
+                                TAG, "onResponse: "
                                         + (response.body() as List<CovidSatusDateWise>)[(response.body())!!.size - 1]
                             )
                             val status =
