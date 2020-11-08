@@ -85,13 +85,16 @@ class DateWiseFragment : Fragment() {
                         call: Call<List<CovidSatusDateWise>>,
                         response: Response<List<CovidSatusDateWise>>
                     ) {
-                        Log.d(
-                            "retrolog", "onResponse: "
-                                    + (response.body() as List<CovidSatusDateWise>)[(response.body())!!.size - 1]
-                        )
-                        val status =
-                            (response.body() as List<CovidSatusDateWise>)[(response.body())!!.size - 1]
-                        viewModel.totalCasesLiveData.value = status.Cases
+                        if (response.body()!!.size > 0) {
+
+                            Log.d(
+                                "retrolog", "onResponse: "
+                                        + (response.body() as List<CovidSatusDateWise>)[(response.body())!!.size - 1]
+                            )
+                            val status =
+                                (response.body() as List<CovidSatusDateWise>)[(response.body())!!.size - 1]
+                            viewModel.totalCasesLiveData.value = status.Cases
+                        }
                     }
 
                 })
