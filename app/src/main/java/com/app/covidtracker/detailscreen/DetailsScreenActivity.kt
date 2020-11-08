@@ -14,17 +14,19 @@ class DetailsScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details_screen)
+        val slug = intent.getStringExtra(Constants.SLUG)
+        Toast.makeText(this, "Clicked: "+slug, Toast.LENGTH_LONG).show()
         val sectionsPagerAdapter =
             ViewPagerFragment(
                 this,
-                supportFragmentManager
+                supportFragmentManager,
+                slug?: "india"
             )
         val viewPager: ViewPager = findViewById(R.id.view_pager)
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = findViewById(R.id.tabs)
         tabs.setupWithViewPager(viewPager)
-        val slug = intent.getStringExtra(Constants.SLUG)
-        Toast.makeText(this, "Clicked: "+slug, Toast.LENGTH_LONG).show()
+
     }
 
 }

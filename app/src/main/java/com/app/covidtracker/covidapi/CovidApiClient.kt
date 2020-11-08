@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class CovidApiClient {
     companion object{
-        private const val BASE_URL = "https://api.covid19api.com/"
+        private const val BASE_URL = "https://api.covid19api.com"
         fun create() : CovidApiService {
             return Retrofit.Builder()
                 .baseUrl(BASE_URL)
