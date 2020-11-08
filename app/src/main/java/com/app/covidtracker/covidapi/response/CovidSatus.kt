@@ -4,9 +4,9 @@ import com.google.gson.annotations.SerializedName
 
 data class CovidSatus (
     @SerializedName("Active")
-    val Active:String,
+    val Active:Int,
     @SerializedName("Deaths")
-    val Death:String,
+    val Death:Int,
     @SerializedName("Confirmed")
-    val Confirmed:String
+    val Confirmed:Int
 )

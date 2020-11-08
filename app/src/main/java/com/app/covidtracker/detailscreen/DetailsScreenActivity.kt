@@ -15,7 +15,6 @@ class DetailsScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details_screen)
         val slug = intent.getStringExtra(Constants.SLUG)
-        Toast.makeText(this, "Clicked: "+slug, Toast.LENGTH_LONG).show()
         val sectionsPagerAdapter =
             ViewPagerFragment(
                 this,
