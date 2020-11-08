@@ -4,5 +4,8 @@ import com.google.gson.annotations.SerializedName
 
 data class Country (
     @SerializedName("Country")
-    val name : String
+    val name : String,
+
+    @SerializedName("Slug")
+    val slug : String
 )

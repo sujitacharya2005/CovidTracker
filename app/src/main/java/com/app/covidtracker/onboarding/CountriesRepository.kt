@@ -15,7 +15,7 @@ object CountriesRepository {
         val countriesLiveData = MutableLiveData<List<Country>>()
         CovidApiClient.create().getCountries().enqueue(object : Callback<List<Country>> {
             override fun onFailure(call: Call<List<Country>>, t: Throwable) {
-                countriesLiveData.value = listOf(Country("error"))
+                countriesLiveData.value = listOf(Country("error", "slug"))
                 Log.d("failurelog", "onFailure: "+t.message)
             }
 

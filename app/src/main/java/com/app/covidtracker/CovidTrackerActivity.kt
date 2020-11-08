@@ -11,6 +11,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.app.covidtracker.constant.Constants
+import com.app.covidtracker.detailscreen.DetailsScreenActivity
 import com.example.myapplication.covidapi.response.Country
 import com.example.myapplication.onboarding.CountryListAdapter
 import com.example.myapplication.onboarding.CountryListViewModel
@@ -52,7 +54,10 @@ class CovidTrackerActivity : AppCompatActivity() {
         })
     }
     private fun itemClicked(country: Country) {
-        Toast.makeText(this, "Clicked: ${country.name}", Toast.LENGTH_LONG).show()
+
+        val intent = Intent(this, DetailsScreenActivity::class.java)
+        intent.putExtra(Constants.SLUG, country.slug)
+        startActivity(intent)
     }
 
 }
